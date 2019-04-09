@@ -5,12 +5,13 @@ import burger from "./icons/menu-open-icon.svg";
 
 const MenuItems = ["home", "about", "contact"];
 
-const CloseButton = Styled.div`
+const MenuBtn = Styled.div`
 font-size: 40px;
 font-weight: bolder;
 position: absolute;
-right: 20px;
-top: 0;
+left: 20px;
+top: 10px;
+cursor: pointer;
 `;
 
 class App extends Component {
@@ -22,17 +23,23 @@ class App extends Component {
     super(props);
   }
 
-  toggleMenuClick() {
+  toggleMenu() {
     this.setState(prevState => ({ opened: !prevState.opened }));
+  }
+
+  closeMenu() {
+    console.log("close Menu");
+    this.setState({ opened: false });
   }
 
   render() {
     return (
       <div className="App">
-        <CloseButton onClick={this.toggleMenuClick.bind(this)}>
+        <MenuBtn onClick={this.toggleMenu.bind(this)}>
           <img src={burger} />
-        </CloseButton>
+        </MenuBtn>
         <Menu
+          closeMenu={this.closeMenu.bind(this)}
           items={MenuItems}
           test={this.state.test}
           opened={this.state.opened}

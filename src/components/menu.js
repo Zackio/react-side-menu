@@ -9,18 +9,20 @@ const Item = Styled.div`
 
 const CloseButton = Styled.div`
 position: absolute;
-right: 0;
+right: 20px;
 width: 20px;
+cursor: pointer;
 img {
     width: 100%;
 }
 `;
 
 class Menu extends Component {
+
   render(props) {
     return (
       <MenuWrapper opened={this.props.opened}>
-      <CloseButton><img src={MenuCloseIcon}/></CloseButton>
+      <CloseButton onClick={this.props.closeMenu}><img src={MenuCloseIcon}/></CloseButton>
         {this.props.items.map(x => (
           <Item key={x}>{x.toUpperCase()}</Item>
         ))}
